@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi novia?</title>
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- SweetAlert2 JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f3f3f3;
+            font-family: Arial, sans-serif;
+        }
+        #container {
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 32px;
+            color: #333;
+        }
+        #buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #4caf50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #btnNo {
+            background-color: #f44336;
+        }
+        #btnNo:hover {
+            background-color: #e53935;
+        }
+        img {
+            margin-top: 10px;
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <script>
+        function accionParaCuandoEllaDigaQueSi() {
+            Swal.fire({
+                title: '¿Estás segura de querer ser mi novia?',
+                showCancelButton: true,
+                confirmButtonText: 'Aceptar',
+                cancelButtonText: 'Cancelar',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redireccionar a la nueva página si responde "Sí"
+                    window.location.href = "opcionsi.html";
+                } else {
+                    Swal.fire(
+                        '¡No te preocupes!',
+                        'Espero que puedas reconsiderarlo.',
+                        'info'
+                    )
+                }
+            });
+        }
+
+        function mueveElBoton() {
+            const width = window.innerWidth - 100; // Ajustar para evitar que el botón se salga de la pantalla
+            const height = window.innerHeight - 50; // Ajustar para evitar que el botón se salga de la pantalla
+
+            const newWidth = Math.random() * width;
+            const newHeight = Math.random() * height;
+
+            const btnNo = document.getElementById("btnNo");
+            btnNo.style.position = "absolute";
+            btnNo.style.left = newWidth + "px";
+            btnNo.style.top = newHeight + "px";
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const btnNo = document.getElementById("btnNo");
+            btnNo.addEventListener('mouseover', mueveElBoton);
+            btnNo.addEventListener('click', mueveElBoton);
+        });
+    </script>
+</head>
+<body>
+    <div id="container">
+        <h1>¿Quieres ser mi novia?</h1>
+        <div id="buttons">
+            <button onclick="accionParaCuandoEllaDigaQueSi()" id="btnSi">Sí</button>
+            <button id="btnNo">No</button>
+        </div>
+        <img src="img1.jpg" alt="Imagen" width="200">
+    </div>
+</body>
+</html>
